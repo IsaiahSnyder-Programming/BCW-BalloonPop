@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Pop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+<body>
+
+    <header>
+        <div class="container shadow">
+            <img src="balloon-pop-logo.png" alt="Balloon Pop Logo">
+        </div>
+    </header>
+
+<main class="container card">
+    <form class="d-flex space-between" id="player-form" onsubmit="setPlayer(event)">
+        <div>
+            <label for="name">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <span>Player Name:</span>
+            </label>
+            <input type="text" name="playerName" required>
+        </div>
+        <button type="submit">Ok</button>
+    </form>
+    
+    <!-- TODO replace hidden class -->
+    <section id="game" class="game ">
+
+        <div class="card bg-dark text-light">
+            <div class="d-flex space-between">
+                <div>
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <span id="player-name"></span>
+                </div>
+                <div>
+                    <span>Top Popped:</span>
+                    <span id="high-pop-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex space-around mt-2">
+            <button class="btn-dark" onclick="changePlayer()">Change Player</button>
+            <button id="start-button" onclick="startGame()">START GAME</button>
+        </div>
+
+        <div class="hidden">
+            <button id="inflate-button" onclick="inflate()" disabled="true">
+                Inflate 
+                <span id="click-count"></span>
+            </button>
+            
+            <div>
+                <span>Balloons Popped:</span>
+                <span id="pop-count">0</span>
+            </div>
+            <div>
+                <span>Time Remaining:</span>
+                <span id="countdown">0</span>
+            </div>
+            
+            <div id="balloon" class="balloon"></div>
+        </div>
+    </section>
+</main>
+
+    <script src="main.js"></script>
+</body>
+</html>

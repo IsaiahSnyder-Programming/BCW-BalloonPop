@@ -1,0 +1,134 @@
+:root{
+    --primary: #f393fd;
+    --primaryDark: #a91ab6;
+    --bg: rgb(175, 170, 170);
+    --shadow: 2px 0 8px rgba(0, 0, 0, .3);
+    --corners: 6px;
+    --textColor: #3a3838;
+    --dark: #3a3838;
+    --darkLighten: #695e5e;
+    --light: rgb(250, 250, 250);
+}
+
+
+body{
+    background-color: var(--bg);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15pt;
+    color: var(--textColor);
+}
+
+header{
+    margin: 3em 0;
+}
+
+img{
+    max-width: 100%;
+}
+
+form{
+    margin: 0;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--textColor);
+    outline: none;
+    font-size: 14pt;
+}
+
+button{
+    background-color: var(--primary);
+    color: var(--light);
+    border: 1px solid var(--primaryDark);
+    border-radius: var(--corners);
+    box-shadow: var(--shadow);
+    text-transform: uppercase;
+    transition: all .2s ease;
+    cursor:pointer;
+    padding: 1em;
+}
+
+button:hover{
+    background-color: var(--primaryDark);
+}
+
+
+.balloon{
+    height: 120px;
+    width: 100px;
+    background-color: blue;
+    border-radius: 50%;
+    transition: all .2s ease;
+}
+
+.container{
+    width: 50%;
+    margin: auto;
+}
+
+.card{
+    background-color: var(--light);
+    padding: 1em;
+    box-shadow: var(--shadow);
+    border-radius: var(--corners);
+}
+
+.shadow{
+    filter: drop-shadow(var(--shadow));
+}
+
+.bg-dark{
+    background-color: var(--dark);
+}
+
+.text-light{
+    color: var(--light);
+}
+
+.btn-dark{
+    background-color: var(--darkLighten);
+    border-color: var(--dark);
+}
+
+.btn-dark:hover{
+    background-color: var(--dark);
+    border-color: var(--darkLighten);
+}
+
+
+.d-flex{
+    display: flex;
+}
+.d-flex.space-between{
+    justify-content: space-between;
+}
+.d-flex.space-around{
+    justify-content: space-around;
+}
+
+.mt-1{
+    margin-top: .5em;
+}
+.mt-2{
+    margin-top: 1em;
+}
+.mt-3{
+    margin-top: 1.5em;
+}
+
+.mb-1{
+    margin-bottom: .5em;
+}
+.mb-2{
+    margin-bottom: 1em;
+}
+.mb-3{
+    margin-bottom: 1.5em;
+}
+
+.hidden{
+    display: none !important;
+}
+
