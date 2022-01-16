@@ -20,58 +20,72 @@
         </div>
     </header>
 
-<main class="container card">
-    <form class="d-flex space-between" id="player-form" onsubmit="setPlayer(event)">
-        <div>
-            <label for="name">
-                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                <span>Player Name:</span>
-            </label>
-            <input type="text" name="playerName" required>
-        </div>
-        <button type="submit">Ok</button>
-    </form>
-    
-    <!-- TODO replace hidden class -->
-    <section id="game" class="game ">
-
-        <div class="card bg-dark text-light">
-            <div class="d-flex space-between">
-                <div>
+    <main class="container card">
+        <form class="d-flex space-between" id="player-form" onsubmit="setPlayer(event)">
+            <div>
+                <label for="name">
                     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                    <span id="player-name"></span>
+                    <span>Player Name:</span>
+                </label>
+                <input type="text" name="playerName" required>
+            </div>
+            <button type="submit">Ok</button>
+        </form>
+
+
+        
+        <section id="game" class="game hidden">
+
+            <div class="card bg-dark text-light">
+                <div class="d-flex space-between">
+                    <div>
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        <span id="player-name"></span>
+                    </div>
+                    <div>
+                        <span>Top Popped:</span>
+                        <span id="high-pop-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main-controls" class="d-flex space-around mt-2">
+                <button class="btn-dark" onclick="changePlayer()">Change Player</button>
+                <button id="start-button" onclick="startGame()">START GAME</button>
+            </div>
+
+            <div id="game-controls" class="hidden">
+                
+                <div>
+                    <span>Balloons Popped:</span>
+                    <span id="pop-count">0</span>
                 </div>
                 <div>
-                    <span>Top Popped:</span>
-                    <span id="high-pop-count">0</span>
+                    <span>Time Remaining:</span>
+                    <span id="countdown">0</span>
                 </div>
-            </div>
-        </div>
+                
+                <div class="game-container d-flex">
+                    <div class="pump" onclick="inflate()">
+                        <div class="handle"></div>
+                        <div class="pump-box">
+                            <span id="click-count"></span>
+                        </div>
+                    </div>
+                    <div id="balloon" class="balloon"></div>
+                    <audio id="pop-sound" src="burst.mp3"></audio>
+                </div>
 
-        <div class="d-flex space-around mt-2">
-            <button class="btn-dark" onclick="changePlayer()">Change Player</button>
-            <button id="start-button" onclick="startGame()">START GAME</button>
-        </div>
+            </div>
+        </section>
+    </main>
 
-        <div class="hidden">
-            <button id="inflate-button" onclick="inflate()" disabled="true">
-                Inflate 
-                <span id="click-count"></span>
-            </button>
-            
-            <div>
-                <span>Balloons Popped:</span>
-                <span id="pop-count">0</span>
-            </div>
-            <div>
-                <span>Time Remaining:</span>
-                <span id="countdown">0</span>
-            </div>
-            
-            <div id="balloon" class="balloon"></div>
-        </div>
-    </section>
-</main>
+
+    <div id="scoreboard" class="container card mt-2">
+        <h3 class="text-center">Scoreboard</h3>
+        <div id="players"></div>
+    </div> 
+
 
     <script src="main.js"></script>
 </body>

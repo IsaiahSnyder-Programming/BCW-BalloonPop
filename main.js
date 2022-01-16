@@ -1,6 +1,3 @@
-// BUTTONS
-let startButton = document.getElementById('start-button')
-let inflateButton = document.getElementById('inflate-button')
 
 
 //#region GAME LOGIC AND DATA
@@ -14,15 +11,18 @@ let inflationRate = 20
 let maxSize = 300
 let highestPopCount = 0
 let currentPopCount = 0
-let gameLength = 5000
+let gameLength = 10000
 let clockId = 0
 let timeRemaining = 0
 let currentPlayer = {}
+let currentColor = "red"
+let possibleColors = ["red", "green", "blue", "purple", "pink"]
+
 
 function startGame(){
-    startButton.setAttribute("disabled", "true")
-    inflateButton.removeAttribute("disabled")
-
+    document.getElementById("game-controls").classList.remove("hidden")
+    document.getElementById("scoreboard").classList.add("hidden")
+    document.getElementById("main-controls").classList.add("hidden")
     startClock()
     setTimeout(stopGame, gameLength)
 }
@@ -49,13 +49,29 @@ function inflate(){
     height += inflationRate
     width += inflationRate
 
+    checkBalloonPop()
+    draw()
+}
+
+function checkBalloonPop(){
     if(height >= maxSize){
         console.log("Pop The Balloon")
+        let balloonElement = document.getElementById("balloon")
+        balloonElement.classList.remove(currentColor)
+        getRandomColor()        
+        balloonElement.classList.add(currentColor)
+
+        document.getElementById("pop-sound").play()
+
         currentPopCount++
         height = 0
         width = 0
     }
-    draw()
+}
+
+function getRandomColor(){
+    let i = Math.floor(Math.random() * possibleColors.length);
+    currentColor = possibleColors[i]
 }
 
 function draw(){
@@ -79,21 +95,23 @@ function draw(){
 function stopGame(){
     console.log("The Game Is Over")
 
-        inflateButton.setAttribute("disabled", "true")
-        startButton.removeAttribute("disabled")
+    document.getElementById("main-controls").classList.remove("hidden")
+    document.getElementById("scoreboard").classList.remove("hidden")
+    document.getElementById("game-controls").classList.add("hidden")
 
         clickCount = 0
         height = 120
         width = 100
 
-if(currentPopCount > currentPlayer.topScore){
-    currentPlayer.topScore = currentPopCount
-    savePlayers()
-}
+    if(currentPopCount > currentPlayer.topScore){
+        currentPlayer.topScore = currentPopCount
+        savePlayers()
+    }
     currentPopCount = 0
 
         stopClock()
         draw()
+        drawScoreboard()
 }
 
 //#endregion
@@ -120,6 +138,7 @@ function setPlayer(event){
     document.getElementById("game").classList.remove("hidden")
     form.classList.add("hidden")
     draw()
+    drawScoreboard()
 }
 
 function changePlayer(){
@@ -137,3 +156,24 @@ function loadPlayers(){
     }
 }
 
+function drawScoreboard(){
+    let template = ""
+
+    players.sort((p1, p2) => p2.topScore - p1.topScore)
+
+    players.forEach(player => {
+        template += `
+        <div class="d-flex space-between">
+            <span>
+                <i class="fa fa-user-circle-o"></i>
+                ${player.name}
+            </span>
+            <span>Score: ${player.topScore}</span>
+        </div>
+        `
+    })
+
+    document.getElementById("players").innerHTML = template
+}
+
+drawScoreboard()
